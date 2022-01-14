@@ -7,6 +7,17 @@ class SignUp extends StatefulWidget {
   @override
   _SignUpState createState() => _SignUpState();
 }
+var _key=GlobalKey<FormState>();
+_submit(){
+  var isValid=_key.currentState!.validate();
+  if(isValid){
+
+  }else{
+    return;
+  }
+}
+var passoff=true;
+Icon passIcon=Icon(Icons.visibility);
 
 class _SignUpState extends State<SignUp> {
   final namectrl = TextEditingController();
@@ -29,61 +40,96 @@ class _SignUpState extends State<SignUp> {
 
         title: Text("Sign Up to continue"),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              controller: namectrl,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: "Enter your Name"
+      body: Form(
+        key: _key,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                validator: (val){
+                  if(val==""){
+                    return "Enter your name";
+                  }
+                },
+                controller: namectrl,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: "Enter your Name"
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              controller: emailtrl,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: "Enter your email"
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                validator: (val){
+                  if(val==""){
+                    return "Enter your email";
+                  }
+                },
+                controller: emailtrl,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: "Enter your email"
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              obscureText: true,
-              controller: passtrl,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: "Enter your password"
-              ),
-            ),
-          ),
-          ElevatedButton(
-              onPressed: (){
-                registration(namectrl.text,emailtrl.text,passtrl.text);
-              },
-              child: Text("Sign Up")
-          ),
-          Center(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Already have an Account? "),
-                InkWell(
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                validator: (val){
+                  if(val==""){
+                    return "Enter your password";
+                  }
+                },
+                obscureText: passoff,
+                controller: passtrl,
+                decoration: InputDecoration(
+                  suffixIcon: GestureDetector(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>SignIn()));
+                      setState(() {
+                        if(passoff){
+                          passoff=false;
+                          passIcon=Icon(Icons.visibility_off);
+
+                        }
+                        else if(passoff){
+                          passoff =true;
+                          passIcon=Icon(Icons.visibility);
+                        }
+                      });
                     },
-                    child: Text("Login",style: TextStyle(color: Color(0xf0d20f0f)),)),
-              ],
+                    child: passIcon,
+                  ),
+                    border: OutlineInputBorder(),
+                    hintText: "Enter your password"
+                ),
+              ),
             ),
-          )
-        ],
+            ElevatedButton(
+                onPressed: (){
+                  _submit();
+                  registration(namectrl.text,emailtrl.text,passtrl.text);
+                },
+                child: Text("Sign Up")
+            ),
+            Center(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Already have an Account? "),
+                  InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>SignIn()));
+                      },
+                      child: Text("Login",style: TextStyle(color: Color(0xf0d20f0f)),)),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
 
     );

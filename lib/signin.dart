@@ -14,6 +14,16 @@ class _SignInState extends State<SignIn> {
   final emailtrl = TextEditingController();
   final passtrl = TextEditingController();
 
+  var _key=GlobalKey<FormState>();
+  _submit(){
+    var isValid=_key.currentState!.validate();
+    if(isValid){
+
+    }else{
+      return;
+    }
+  }
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -29,51 +39,65 @@ class _SignInState extends State<SignIn> {
 
         title: Text("Sign In to continue"),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              controller: emailtrl,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: "Enter your email"
+      body: Form(
+        key: _key,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                validator: (val){
+                  if(val==""){
+                    return "Enter your email";
+                  }
+                },
+                controller: emailtrl,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: "Enter your email"
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              obscureText: true,
-              controller: passtrl,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: "Enter your password"
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                validator: (val){
+                  if(val==""){
+                    return "Enter your password";
+                  }
+                },
+                obscureText: true,
+                controller: passtrl,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: "Enter your password"
+                ),
               ),
             ),
-          ),
-          ElevatedButton(
-              onPressed: (){
-                registration(emailtrl.text,passtrl.text);
-              },
-              child: Text("Sign In")
-          ),
-          Center(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Create an Account? "),
-                InkWell(
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>SignUp()));
-                  },
-                    child: Text("Registration",style: TextStyle(color: Color(0xf0d20f0f)),)),
-              ],
+            ElevatedButton(
+                onPressed: (){
+                  _submit();
+                  registration(emailtrl.text,passtrl.text);
+                },
+                child: Text("Sign In")
             ),
-          )
-        ],
+            Center(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Create an Account? "),
+                  InkWell(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>SignUp()));
+                    },
+                      child: Text("Registration",style: TextStyle(color: Color(0xf0d20f0f)),)),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
 
     );
