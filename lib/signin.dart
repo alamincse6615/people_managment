@@ -23,6 +23,8 @@ class _SignInState extends State<SignIn> {
       return;
     }
   }
+  var passoff=true;
+  Icon passIcon=Icon(Icons.visibility);
 
   @override
   void dispose() {
@@ -67,9 +69,25 @@ class _SignInState extends State<SignIn> {
                     return "Enter your password";
                   }
                 },
-                obscureText: true,
+                obscureText: passoff,
                 controller: passtrl,
                 decoration: InputDecoration(
+                    suffixIcon: GestureDetector(
+                      onTap: (){
+                        setState(() {
+                          if(passoff){
+                            passoff=false;
+                            passIcon=Icon(Icons.visibility_off);
+
+                          }
+                          else if(passoff){
+                            passoff =true;
+                            passIcon=Icon(Icons.visibility);
+                          }
+                        });
+                      },
+                      child: passIcon,
+                    ),
                     border: OutlineInputBorder(),
                     hintText: "Enter your password"
                 ),
