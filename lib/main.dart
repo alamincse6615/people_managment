@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
 
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors(0x4FD5E7),
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -38,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0x65350ea0),
+      backgroundColor: Color(0x79E7A3),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
