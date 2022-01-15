@@ -13,10 +13,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-
-        primarySwatch: Colors(0x4FD5E7),
+        primaryColor: Color(0xff17a1b4),
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -49,7 +49,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
      );
   }
-
   @override
   void initState() {
     Timer(Duration(seconds: 3), (){

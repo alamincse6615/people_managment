@@ -15,14 +15,7 @@ class _SignInState extends State<SignIn> {
   final passtrl = TextEditingController();
 
   var _key=GlobalKey<FormState>();
-  _submit(){
-    var isValid=_key.currentState!.validate();
-    if(isValid){
 
-    }else{
-      return;
-    }
-  }
   var passoff=true;
   Icon passIcon=Icon(Icons.visibility);
 
@@ -68,6 +61,7 @@ class _SignInState extends State<SignIn> {
                   if(val==""){
                     return "Enter your password";
                   }
+
                 },
                 obscureText: passoff,
                 controller: passtrl,
@@ -80,7 +74,7 @@ class _SignInState extends State<SignIn> {
                             passIcon=Icon(Icons.visibility_off);
 
                           }
-                          else if(passoff){
+                          else if(!passoff){
                             passoff =true;
                             passIcon=Icon(Icons.visibility);
                           }
@@ -95,7 +89,7 @@ class _SignInState extends State<SignIn> {
             ),
             ElevatedButton(
                 onPressed: (){
-                  _submit();
+
                   registration(emailtrl.text,passtrl.text);
                 },
                 child: Text("Sign In")
@@ -121,7 +115,14 @@ class _SignInState extends State<SignIn> {
     );
   }
   registration(String email, String pass){
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>Dashboard()));
+    var isValid=_key.currentState!.validate();
+
+    if(isValid){
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>Dashboard()));
+    }else{
+      return;
+    }
+
   }
 
 }

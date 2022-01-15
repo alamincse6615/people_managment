@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:people_management/addpeople.dart';
 
@@ -8,6 +9,8 @@ class Dashboard extends StatefulWidget {
   _DashboardState createState() => _DashboardState();
 }
 class _DashboardState extends State<Dashboard> {
+  FirebaseAuth auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,9 +42,9 @@ class _DashboardState extends State<Dashboard> {
                 itemBuilder: (context,index){
                   return Row(
                     children: [
-                      Text("Name"),
-                      Text("email"),
-                      Text("phone"),
+                      Text(""+auth.currentUser!.email.toString()),
+                      Text("\n"+auth.currentUser!.uid.toString()),
+                      Text("\nphone"),
                     ],
                   );
                 }
