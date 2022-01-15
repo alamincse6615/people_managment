@@ -38,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0x79E7A3),
+      backgroundColor: Color(pink),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
