@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:people_management/addpeople.dart';
 
@@ -41,10 +42,11 @@ class _DashboardState extends State<Dashboard> {
               itemCount: 5,
                 itemBuilder: (context,index){
                   return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
                     children: [
-                      Text(""+auth.currentUser!.email.toString()),
-                      Text("\n"+auth.currentUser!.uid.toString()),
-                      Text("\nphone"),
+                      Text(""+auth.currentUser!.email.toString()+"\n"),
+                      Text(""+auth.currentUser!.uid.toString()+"\n"),
                     ],
                   );
                 }

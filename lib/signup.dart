@@ -149,7 +149,7 @@ class _SignUpState extends State<SignUp> {
           Navigator.push(context, MaterialPageRoute(builder: (context)=>Dashboard()));
       }else{
         // already email login
-        // email formet wrong
+        // email format wrong
         // password 6<small
       }
     }else{
