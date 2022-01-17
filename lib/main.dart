@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset("images/logo.png")
+              Image.network('https://pngtree.com/freepng/wolf-logo_2306634.html'),
             ],
           ),
         ),
