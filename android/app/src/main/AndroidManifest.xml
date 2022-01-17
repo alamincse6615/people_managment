@@ -1,9 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pm.people_management">
-   <application
-        android:label="people_management"
-        android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:usesCleartextTraffic="true"
+        android:label="PM"
+        android:name="PM"
+        android:icon="@drawable/logo">
         <activity
             android:name=".MainActivity"
             android:exported="true"

@@ -134,7 +134,6 @@ class _SignUpState extends State<SignUp> {
       ),
     );
   }
-
   Future<FirebaseApp> firebaeinit()async{
     FirebaseApp firebaseApp = await Firebase.initializeApp();
     return firebaseApp;

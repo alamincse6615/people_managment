@@ -43,7 +43,6 @@ class _DashboardState extends State<Dashboard> {
                 itemBuilder: (context,index){
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
                     children: [
                       Text(""+auth.currentUser!.email.toString()+"\n"),
                       Text(""+auth.currentUser!.uid.toString()+"\n"),

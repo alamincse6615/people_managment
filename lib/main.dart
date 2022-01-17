@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.network('https://pngtree.com/freepng/wolf-logo_2306634.html'),
+              Image.asset("images/logo.png"),
             ],
           ),
         ),
@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
   @override
   void initState() {
-    Timer(Duration(seconds: 3), (){
+    Timer(Duration(seconds: 5), (){
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
