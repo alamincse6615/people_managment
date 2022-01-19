@@ -53,36 +53,45 @@ class _DashboardState extends State<Dashboard> {
               title: Text('Add Information'),
               leading: Icon(Icons.add),
               trailing: Icon(Icons.arrow_forward_ios_sharp),
+              onTap: (){},
             ),
             ListTile(
               title: Text('Log Out'),
               leading: Icon(Icons.subdirectory_arrow_left_sharp),
+              onTap: (){},
             ),
           ],
         ),
 
       ),
-      body: Column(
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height*.80,
-            child: ListView.builder(
-              itemCount: 5,
-                itemBuilder: (context,index){
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
+      body:ListView.builder(
+          itemBuilder: (context,index){
+            return Table(
+              border: TableBorder.all(color:Colors.black87,width:2),
+              children: [
+                TableRow(
                     children: [
-                      Text(""+auth.currentUser!.email.toString()+"\n"),
-                      Text(""+auth.currentUser!.uid.toString()+"\n"),
-                    ],
-                  );
-                }
-            ),
-          )
-
-        ],
-      ),
+                      TableCell(
+                          child: Text('Email')
+                      ),
+                      TableCell(
+                          child: Text('UID')
+                      ),
+                    ]
+                ),
+                TableRow(
+                    children: [
+                      TableCell(
+                          child: Text(""+auth.currentUser!.email.toString()+"\n")
+                      ),
+                      TableCell(
+                          child: Text(""+auth.currentUser!.uid.toString()+"\n")
+                      ),
+                    ]
+                ),
+              ],
+            );
+          }),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           Navigator.push(context, MaterialPageRoute(builder: (context)=>AddPeople()));
