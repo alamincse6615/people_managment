@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:people_management/addpeople.dart';
+import 'package:people_management/profile.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -47,68 +48,66 @@ class _DashboardState extends State<Dashboard> {
                 CircleAvatar(child: Text('Niloy'),
                 ),
 
-<<<<<<< HEAD
+  ]
+
       ),
-      body: Column(
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height*.80,
-            child: ListView.builder(
-              itemCount: 5,
-                itemBuilder: (context,index){
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(""+auth.currentUser!.email.toString()+"\n"),
-                      Text(""+auth.currentUser!.uid.toString()+"\n"),
-                    ],
-                  );
-                }
-=======
-              ],
->>>>>>> edef2ab8b0610ce7e8881f5a44e5080463ba999a
+            ListTile(
+              title: Text('Profile'),
+              leading: Icon(Icons.person),
+              trailing: Icon(Icons.arrow_forward_ios_sharp),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>Profile()));
+              },
             ),
             ListTile(
               title: Text('Add Information'),
               leading: Icon(Icons.add),
               trailing: Icon(Icons.arrow_forward_ios_sharp),
-              onTap: (){},
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>Profile()));
+              },
             ),
             ListTile(
               title: Text('Log Out'),
               leading: Icon(Icons.subdirectory_arrow_left_sharp),
               onTap: (){},
             ),
-          ],
-        ),
-
+      ]
+        )
       ),
+
       body:ListView.builder(
+        itemCount: 5,
           itemBuilder: (context,index){
-            return Table(
-              border: TableBorder.all(color:Colors.black87,width:2),
-              children: [
-                TableRow(
-                    children: [
-                      TableCell(
-                          child: Text('Email')
-                      ),
-                      TableCell(
-                          child: Text('UID')
-                      ),
-                    ]
-                ),
-                TableRow(
-                    children: [
-                      TableCell(
-                          child: Text(""+auth.currentUser!.email.toString()+"\n")
-                      ),
-                      TableCell(
-                          child: Text(""+auth.currentUser!.uid.toString()+"\n")
-                      ),
-                    ]
-                ),
-              ],
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Table(
+                border: TableBorder.all(color:Colors.black87,width:2),
+                children: [
+                  TableRow(
+                      children: [
+                        TableCell(
+                            child: Center(child: Text('Email'))
+                        ),
+                        TableCell(
+                            child: Center(child: Text('UID'))
+                        ),
+                      ]
+                  ),
+                  TableRow(
+                      children: [
+                        TableCell(
+
+                            child: Center(
+                                child: Text(""+auth.currentUser!.email.toString()+"\n"))
+                        ),
+                        TableCell(
+                            child: Center(child: Text(""+auth.currentUser!.uid.toString()+"\n"))
+                        ),
+                      ]
+                  ),
+                ],
+              ),
             );
           }),
       floatingActionButton: FloatingActionButton(

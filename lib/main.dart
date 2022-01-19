@@ -40,11 +40,8 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-<<<<<<< HEAD
+
               Image.asset("images/logo.png"),
-=======
-              Image.asset('images/logo.png'),
->>>>>>> edef2ab8b0610ce7e8881f5a44e5080463ba999a
             ],
           ),
         ),

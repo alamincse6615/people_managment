@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:people_management/dashboard.dart';
 import 'package:people_management/signin.dart';
@@ -18,6 +19,7 @@ class _SignUpState extends State<SignUp> {
   final namectrl = TextEditingController();
   final emailtrl = TextEditingController();
   final passtrl = TextEditingController();
+  late DatabaseReference _databaseReference;
 
   @override
   void dispose() {
@@ -26,6 +28,12 @@ class _SignUpState extends State<SignUp> {
     namectrl.dispose();
     emailtrl.dispose();
     passtrl.dispose();
+  }
+
+
+  @override
+  void initState() {
+    _databaseReference = FirebaseDatabase.instance.reference();
   }
 
   @override
@@ -146,7 +154,7 @@ class _SignUpState extends State<SignUp> {
     if(isValid){
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(email: email, password: pass);
       if(userCredential.user != null){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>Dashboard()));
+        userInfoSave(name,email,pass,auth.currentUser!.uid);
       }else{
         // already email login
         // email format wrong
@@ -155,5 +163,16 @@ class _SignUpState extends State<SignUp> {
     }else{
       return;
     }
+  }
+  userInfoSave(String name, String email, String password,String uid){
+    Map<dynamic,dynamic> userinfo = {
+      "name":name,
+      "email":email,
+      "password":password,
+      "uid":uid,
+    };
+    _databaseReference.child("UserInfo").child(uid).set(userinfo);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>Dashboard()));
+
   }
 }

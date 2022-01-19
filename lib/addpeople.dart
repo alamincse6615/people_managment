@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:people_management/dashboard.dart';
@@ -14,6 +15,8 @@ class _AddPeopleState extends State<AddPeople> {
   final phnCtrl = TextEditingController();
   final addressCtrl = TextEditingController();
   late DatabaseReference _databaseReference;
+
+  FirebaseAuth auth = FirebaseAuth.instance;
 
 
   @override
@@ -91,19 +94,21 @@ class _AddPeopleState extends State<AddPeople> {
       ),
     );
   }
-  saveDataToDatabase(String name, String email, String phn, String address)async{
+  saveDataToDatabase(String name, String email, String phn, String address){
 
     Map<dynamic,dynamic> peopleInfo = {
       "name":name,
       "email":email,
       "phn":phn,
       "address":address,
+      "infoauthor":auth.currentUser!.uid,
     };
-    await _databaseReference.child("info").set(peopleInfo);
+    _databaseReference.child("PeopleInfo").push().set(peopleInfo);
 
     /*Navigator.push(context, MaterialPageRoute(builder: (context)=>Dashboard()));*/
 
   }
+
 
 
 }

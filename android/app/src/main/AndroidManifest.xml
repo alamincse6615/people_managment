@@ -5,7 +5,7 @@
     <application
         android:usesCleartextTraffic="true"
         android:label="PM"
-        android:name="PM"
+        android:name="${applicationName}"
         android:icon="@drawable/logo">
         <activity
             android:name=".MainActivity"
