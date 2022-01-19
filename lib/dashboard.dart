@@ -16,6 +16,7 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blueGrey,
         title: Text("Dashboard"),
 
         actions: [
@@ -32,6 +33,33 @@ class _DashboardState extends State<Dashboard> {
 
       ),
       drawer: Drawer(
+        child: ListView(
+          children: [
+            UserAccountsDrawerHeader(
+                accountName: Text('Arafat'),
+                accountEmail: Text('arafatkh999@gmail.com'),
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: AssetImage('images/profile.jpg'),
+              ),
+              otherAccountsPictures: [
+                CircleAvatar(child: Text('Labib'),
+                ),
+                CircleAvatar(child: Text('Niloy'),
+                ),
+
+              ],
+            ),
+            ListTile(
+              title: Text('Add Information'),
+              leading: Icon(Icons.add),
+              trailing: Icon(Icons.arrow_forward_ios_sharp),
+            ),
+            ListTile(
+              title: Text('Log Out'),
+              leading: Icon(Icons.subdirectory_arrow_left_sharp),
+            ),
+          ],
+        ),
 
       ),
       body: Column(

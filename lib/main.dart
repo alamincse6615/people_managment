@@ -35,12 +35,12 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.pink,
+      backgroundColor: Colors.blueGrey,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.network('https://pngtree.com/freepng/wolf-logo_2306634.html'),
+              Image.asset('images/logo.png'),
             ],
           ),
         ),
