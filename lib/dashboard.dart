@@ -16,6 +16,7 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blueGrey,
         title: Text("Dashboard"),
 
         actions: [
@@ -32,7 +33,21 @@ class _DashboardState extends State<Dashboard> {
 
       ),
       drawer: Drawer(
+        child: ListView(
+          children: [
+            UserAccountsDrawerHeader(
+                accountName: Text('Arafat'),
+                accountEmail: Text('arafatkh999@gmail.com'),
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: AssetImage('images/profile.jpg'),
+              ),
+              otherAccountsPictures: [
+                CircleAvatar(child: Text('Labib'),
+                ),
+                CircleAvatar(child: Text('Niloy'),
+                ),
 
+<<<<<<< HEAD
       ),
       body: Column(
         children: [
@@ -49,11 +64,53 @@ class _DashboardState extends State<Dashboard> {
                     ],
                   );
                 }
+=======
+              ],
+>>>>>>> edef2ab8b0610ce7e8881f5a44e5080463ba999a
             ),
-          )
+            ListTile(
+              title: Text('Add Information'),
+              leading: Icon(Icons.add),
+              trailing: Icon(Icons.arrow_forward_ios_sharp),
+              onTap: (){},
+            ),
+            ListTile(
+              title: Text('Log Out'),
+              leading: Icon(Icons.subdirectory_arrow_left_sharp),
+              onTap: (){},
+            ),
+          ],
+        ),
 
-        ],
       ),
+      body:ListView.builder(
+          itemBuilder: (context,index){
+            return Table(
+              border: TableBorder.all(color:Colors.black87,width:2),
+              children: [
+                TableRow(
+                    children: [
+                      TableCell(
+                          child: Text('Email')
+                      ),
+                      TableCell(
+                          child: Text('UID')
+                      ),
+                    ]
+                ),
+                TableRow(
+                    children: [
+                      TableCell(
+                          child: Text(""+auth.currentUser!.email.toString()+"\n")
+                      ),
+                      TableCell(
+                          child: Text(""+auth.currentUser!.uid.toString()+"\n")
+                      ),
+                    ]
+                ),
+              ],
+            );
+          }),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           Navigator.push(context, MaterialPageRoute(builder: (context)=>AddPeople()));
