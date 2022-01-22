@@ -42,6 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
 
               Image.asset("images/logo.png"),
+
             ],
           ),
         ),

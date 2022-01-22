@@ -20,7 +20,6 @@ class _SignInState extends State<SignIn> {
 
   var passoff=true;
   Icon passIcon=Icon(Icons.visibility);
-
   @override
   void dispose() {
     // TODO: implement dispose
@@ -28,7 +27,6 @@ class _SignInState extends State<SignIn> {
     emailtrl.dispose();
     passtrl.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +43,13 @@ class _SignInState extends State<SignIn> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                ),
+
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(

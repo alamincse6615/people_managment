@@ -35,6 +35,7 @@ class _AddPeopleState extends State<AddPeople> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffb1ef06),
       appBar: AppBar(
         title: Text("Add New People"),
       ),
@@ -105,7 +106,7 @@ class _AddPeopleState extends State<AddPeople> {
     };
     _databaseReference.child("PeopleInfo").push().set(peopleInfo);
 
-    /*Navigator.push(context, MaterialPageRoute(builder: (context)=>Dashboard()));*/
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>Dashboard()));
 
   }
 
