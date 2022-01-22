@@ -107,7 +107,7 @@ class _DashboardState extends State<Dashboard> {
               ),
               Text(
                   snapshot.child("address").value.toString(),
-                style: TextStyle(fontSize: 20,fontStyle: FontStyle.italic,color: Colors.green),
+                style: TextStyle(fontSize: 20,fontStyle: FontStyle.italic,color: Colors.blue),
               ),
               Divider(height: 5,color: Colors.red,)
             ],
