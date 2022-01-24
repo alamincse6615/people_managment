@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
@@ -20,12 +18,19 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   void initState() {
-    _databaseReference = FirebaseDatabase.instance.reference();
+    _databaseReference = FirebaseDatabase.instance.ref();
   }
 
 
   @override
   Widget build(BuildContext context) {
+    var _currentindex=0;
+    final _pages=[
+      Dashboard(),
+      AddPeople(),
+      Profile(),
+
+    ];
     final refquery = _databaseReference.child("PeopleInfo");
 
     return Scaffold(
@@ -88,7 +93,8 @@ class _DashboardState extends State<Dashboard> {
       ]
         )
       ),
-      body: FirebaseAnimatedList(
+      body:
+      FirebaseAnimatedList(
         query: refquery,
         itemBuilder: (context,snapshot,animation,index){
           return Column(
@@ -115,6 +121,26 @@ class _DashboardState extends State<Dashboard> {
         },
 
       ),
+     bottomNavigationBar: BottomNavigationBar(
+       currentIndex: _currentindex,
+       items: [
+         BottomNavigationBarItem(icon: Icon(Icons.assignment),
+         label: 'DashBoard'
+         ),
+         BottomNavigationBarItem(icon: Icon(Icons.person_add),
+         label: 'AddPeople'
+         ),
+         BottomNavigationBarItem(icon: Icon(Icons.person),
+         label: 'Profile'
+         ),
+       ],
+       onTap: (index){
+        setState(() {
+          _currentindex=index;
+        });
+       },
+
+     ),
      /* body:ListView.builder(
         itemCount: 5,
           itemBuilder: (context,index){
