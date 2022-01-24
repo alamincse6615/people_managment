@@ -4,7 +4,9 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:people_management/addpeople.dart';
+import 'package:people_management/home.dart';
 import 'package:people_management/profile.dart';
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -15,6 +17,12 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   FirebaseAuth auth = FirebaseAuth.instance;
   late DatabaseReference _databaseReference;
+  int _currentindex=2;
+  final _allPages =[
+    Home(),
+    AddPeople(),
+    Profile(),
+  ];
 
   @override
   void initState() {
@@ -24,14 +32,8 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    var _currentindex=0;
-    final _pages=[
-      Dashboard(),
-      AddPeople(),
-      Profile(),
 
-    ];
-    final refquery = _databaseReference.child("PeopleInfo");
+
 
     return Scaffold(
       appBar: AppBar(
@@ -93,54 +95,43 @@ class _DashboardState extends State<Dashboard> {
       ]
         )
       ),
-      body:
-      FirebaseAnimatedList(
-        query: refquery,
-        itemBuilder: (context,snapshot,animation,index){
-          return Column(
-            children: [
-              Text(
-                  snapshot.child("name").value.toString(),
-                style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),
-              ),
-              Text(
-                  snapshot.child("email").value.toString(),
-                style: TextStyle(fontSize: 20,fontWeight: FontWeight.normal),
-              ),
-              Text(
-                  snapshot.child("phn").value.toString(),
-                style: TextStyle(fontSize: 20,fontWeight: FontWeight.normal,color: Colors.green),
-              ),
-              Text(
-                  snapshot.child("address").value.toString(),
-                style: TextStyle(fontSize: 20,fontStyle: FontStyle.italic,color: Colors.blue),
-              ),
-              Divider(height: 5,color: Colors.red,)
-            ],
-          );
-        },
-
-      ),
+      body:  _allPages[_currentindex],
      bottomNavigationBar: BottomNavigationBar(
        currentIndex: _currentindex,
-       items: [
-         BottomNavigationBarItem(icon: Icon(Icons.assignment),
+       items: <BottomNavigationBarItem>[
+         BottomNavigationBarItem(icon: Icon(Icons.assessment),label: "Dashboard"),
+         BottomNavigationBarItem(icon: Icon(Icons.person_add),label: "Add People"),
+         BottomNavigationBarItem(icon: Icon(Icons.person),label: "Profile"),
+       ],
+       selectedItemColor: Colors.amber[800],
+       onTap: (index){
+         setState(() {
+           _currentindex = index;
+         });
+       },
+
+     ),
+
+
+     /* items: [
+         BottomNavigationBarItem(
+             icon: Icon(Icons.assignment),
          label: 'DashBoard'
          ),
-         BottomNavigationBarItem(icon: Icon(Icons.person_add),
+         BottomNavigationBarItem(
+             icon: Icon(Icons.person_add),
          label: 'AddPeople'
          ),
-         BottomNavigationBarItem(icon: Icon(Icons.person),
+         BottomNavigationBarItem(
+             icon: Icon(Icons.person),
          label: 'Profile'
          ),
        ],
        onTap: (index){
         setState(() {
-          _currentindex=index;
+          _currentindex = index;
         });
-       },
-
-     ),
+       },*/
      /* body:ListView.builder(
         itemCount: 5,
           itemBuilder: (context,index){

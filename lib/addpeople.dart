@@ -26,6 +26,7 @@ class _AddPeopleState extends State<AddPeople> {
 
   @override
   void dispose() {
+    super.dispose();
     nameCtrl.dispose();
     emailCtrl.dispose();
     phnCtrl.dispose();
